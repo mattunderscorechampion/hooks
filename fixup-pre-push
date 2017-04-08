@@ -1,4 +1,6 @@
 
+# Copyright (c) 2017 Matt Champion
+
 # This hook is called with the two parameters:
 #
 # - name of the remote being pushed to
@@ -26,4 +28,3 @@ do
 done
 
 exit 0
-
