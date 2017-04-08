@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# This is git pre-push hook. It validates that no commit
+# message contains the word 'fixup' or some variation of
+# it. It is assumed that the intent is to use git rebase to
+# combine such commits with others and that they should
+# not be pushed.
+
 # Copyright (c) 2017 Matt Champion
 # Licensed under the MIT licence
 
