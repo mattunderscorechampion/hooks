@@ -1,3 +1,15 @@
+
+# This hook is called with the two parameters:
+#
+# - name of the remote being pushed to
+# - URL of the remote being pushed to
+#
+# Information about the commits to be pushed is passed
+# through the standard input. A single line is provided for
+# each ref being pushed:
+#
+# <local ref> <local sha1> <remote ref> <remote sha1>
+
 remote="$1"
 url="$2"
 
