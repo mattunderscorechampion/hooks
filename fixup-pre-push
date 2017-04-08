@@ -8,7 +8,7 @@ do
     if [ $? -eq 0 ]; then
         echo "${local_sha} rejected, needs to be fixed up"
         git log --format=%B -n 1 ${local_sha} | cat
-        echo "Alternatively use the flag --no-verify to disable the commit hook."
+        echo "Alternatively use the flag --no-verify to disable the verification."
         exit 1
     fi
 done
