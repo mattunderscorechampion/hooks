@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Copyright (c) 2017 Matt Champion
+# Licensed under the MIT licence
 
 # This hook is called with the two parameters:
 #
