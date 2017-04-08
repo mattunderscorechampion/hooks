@@ -17,21 +17,33 @@
 remote="$1"
 url="$2"
 
+declare -a BAD_COMMITS
 IFS=' '
 while read local_ref local_sha remote_ref remote_sha ; do
     # For each remote list the commits that are present locally
     # but not in the remote
     while read commit ; do
         # For each commit check if the message contains 'fixup'
-        # and if it does prevent pushing the commit
+        # and if it does push the commit into an array
         git log --format=%B -n 1 ${commit} | grep -i fixup >> /dev/null
         if [ $? -eq 0 ]; then
-            echo "${commit} rejected, needs to be fixed up"
-            git log --format=%B -n 1 ${commit} | cat
-            echo "Alternatively use the flag --no-verify to disable the verification."
-            exit 1
+            BAD_COMMITS[${#BAD_COMMITS[@]}]=${commit}
         fi
     done < <(git log --format=%H ${remote_sha}..${local_sha})
 done
+
+if [ ${#BAD_COMMITS[@]} -ne 0 ]; then
+    # If there are any commits containing 'fixup' prevent
+    # the commits from being pushed
+    echo "${#BAD_COMMITS[@]} commits found containing 'fixup' in their message"
+    echo
+    for commit in "${BAD_COMMITS[@]}" ; do
+        # Report on the commits containing 'fixup'
+        echo "${commit} rejected, needs to be fixed up"
+        git log --format=%B -n 1 ${commit} | cat
+    done
+    echo "Alternatively use the flag --no-verify to disable the verification."
+    exit 1
+fi
 
 exit 0
