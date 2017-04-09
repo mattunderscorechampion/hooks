@@ -15,4 +15,4 @@ or some variation of it.
 It is assumed that commits with such messages are intended
 to be combined with other commits using rebase.
 If such a commit is found it is reported through standard
-output and the push prevented.
+output and the push is prevented.
