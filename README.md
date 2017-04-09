@@ -16,3 +16,5 @@ It is assumed that commits with such messages are intended
 to be combined with other commits using rebase.
 If such a commit is found it is reported through standard
 output and the push is prevented.
+To enable it for a Git repository copy it to
+`<repo>/.git/hooks/pre-push`
